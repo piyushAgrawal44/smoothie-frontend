@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar"
 import { FormEvent, useEffect, useState } from "react"
 import { signUpApi } from "../redux/actions/authAction"
 import { token, useAppDispatch } from "../redux/store"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function SignupPage() {
 	const [firstName, setFirstName] = useState<string>("")
@@ -95,6 +95,8 @@ export default function SignupPage() {
 											placeholder="******"
 										/>
 									</div>
+
+									<p><span className="text-white opacity-50">Already have an Account ..</span> <Link to={"/login"} className="text-white font-semibold">Login</Link> </p>
 
 									<div className="my-2.5">
 										<button

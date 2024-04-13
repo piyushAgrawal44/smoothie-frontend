@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar"
 import { FormEvent, useEffect, useState } from "react"
 import { loginApi } from "../redux/actions/authAction"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../redux/store"
 
 export default function LoginPage() {
@@ -55,6 +55,7 @@ export default function LoginPage() {
 											placeholder="******"
 										/>
 									</div>
+									<p><span className="text-white opacity-50">Create new Account ..</span> <Link to={"/signup"} className="text-white font-semibold">Sign up</Link> </p>
 									<div className="my-2.5">
 										<button
 											type="submit"

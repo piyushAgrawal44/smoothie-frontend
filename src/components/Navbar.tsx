@@ -8,11 +8,11 @@ import SearchBar from "../utils/searchBar"
 import { allSongApi } from "../redux/actions/songAction"
 
 export default function Navbar() {
-	const { isAuthenticated, user, token }: { isAuthenticated: boolean; user: User | null; token: string } = useAppSelector(
-		(state) => state.auth
-	)
 	const { searchQuery, limit, page }: { searchQuery: string; limit: number; page: number } = useAppSelector(
 		(state) => state.filter
+	)
+	const { isAuthenticated, user, token }: { isAuthenticated: boolean; user: User | null; token: string } = useAppSelector(
+		(state) => state.auth
 	)
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
