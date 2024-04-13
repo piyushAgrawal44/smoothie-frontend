@@ -1,12 +1,27 @@
 import { useRef } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import WhiteButton from "./WhiteButton"
-import { useSelector } from "react-redux"
-import { RootState } from "../redux/store"
-import { User } from "../redux/reducers/authReducer"
-// import quizmingoLogo from '../../images/quizmingo-logo.png';
+import { useAppDispatch, useAppSelector } from "../redux/store"
+import { User, logOutSuccess } from "../redux/reducers/authReducer"
 export default function Sidebar(props: any) {
-	const { user }: { user: User | null } = useSelector((state: RootState) => state.auth)
+	const { isAuthenticated, user }: { isAuthenticated: boolean; user: User | null; } = useAppSelector(
+		(state) => state.auth
+	)
+
+	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
+
+	const logoutHandler = async () => {
+		localStorage.removeItem("token")
+		const payload = {
+			loading: false,
+			isAuthenticated: false,
+			user: null,
+			token: ""
+		}
+		await dispatch(logOutSuccess(payload))
+		navigate("/login")
+	}
 	const mainMenu = useRef<HTMLDivElement>(null)
 	const openMainMenu = () => {
 		if (mainMenu.current) {
@@ -73,24 +88,40 @@ export default function Sidebar(props: any) {
 								</button>
 							</div>
 							<ul className="font-medium flex flex-col p-4 mt-4 rounded-lg bg-[#242424]">
-								<li className="mb-5">
-									<Link
-										to="/"
-										replace={true}
+								{isAuthenticated ? <><li className="mb-5">
+									<span
+
+
 										className={`flex items-center lg:text-lg rounded  pl-1 text-gray-50 font-semibold  hover:text-gray-50 `}
 									>
-										<span className="text-[16px] md:text-[14px]">Log in</span>
-									</Link>
+										<span className="text-[16px] md:text-[14px]"> Hello , {user?.firstName}</span>
+									</span>
 								</li>
-								<li className="">
-									<Link
-										to="/"
-										replace={true}
-										className={`flex items-center lg:text-lg rounded  pl-1 text-gray-50 font-semibold  hover:text-gray-50 `}
-									>
-										<span className="text-[16px] md:text-[14px]">Sign up</span>
-									</Link>
-								</li>
+									<li className="">
+										<span
+											onClick={logoutHandler}
+											className={`flex items-center lg:text-lg rounded  pl-1 text-gray-50 font-semibold  hover:text-gray-50 `}
+										>
+											<span className="text-[16px] md:text-[14px]">Log out</span>
+										</span>
+									</li></> : <><li className="mb-5">
+										<Link
+											to="/login"
+											replace={true}
+											className={`flex items-center lg:text-lg rounded  pl-1 text-gray-50 font-semibold  hover:text-gray-50 `}
+										>
+											<span className="text-[16px] md:text-[14px]">Log in</span>
+										</Link>
+									</li>
+									<li className="">
+										<Link
+											to="/signup"
+											replace={true}
+											className={`flex items-center lg:text-lg rounded  pl-1 text-gray-50 font-semibold  hover:text-gray-50 `}
+										>
+											<span className="text-[16px] md:text-[14px]">Sign up</span>
+										</Link>
+									</li></>}
 
 								<div className="w-[10px] ml-1 bg-white h-[2px] my-8"></div>
 
