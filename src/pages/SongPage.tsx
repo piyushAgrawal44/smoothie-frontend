@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { Song } from "../redux/reducers/songReducer"
 import { allSongApi, listenSongApi } from "../redux/actions/songAction"
 import { DotsLoader } from "../components/loaders/DotsLoader"
+import { filterStart } from "../redux/reducers/searchReducer"
 
 export default function SongPage() {
 	const { searchQuery, limit, page }: { searchQuery: string; limit: number; page: number } = useAppSelector(
@@ -25,7 +26,21 @@ export default function SongPage() {
 		if (song?._id) {
 			dispatch(listenSongApi(song._id))
 		}
-		await dispatch(allSongApi(searchQuery, limit, page))
+		// await dispatch(allSongApi(searchQuery, limit, page))
+	}
+
+	const nextPaginate = async () => {
+		const next = page + 1
+		const payload: { searchQuery: string; limit: number; page: number } = { searchQuery, limit, page: next }
+		await dispatch(filterStart(payload))
+		await dispatch(allSongApi(searchQuery, limit, next))
+	}
+	const backPaginate = async () => {
+		const back = page - 1
+		const payload: { searchQuery: string; limit: number; page: number } = { searchQuery, limit, page: back }
+		await dispatch(filterStart(payload))
+		await dispatch(allSongApi(searchQuery, limit, back))
+
 	}
 
 	const transFormCharacter = (songName: string) => {
@@ -51,11 +66,11 @@ export default function SongPage() {
 								<div
 									onClick={() => clickOnSingleSong(song)}
 									key={song?._id}
-									className="w-[200px] p-4 h-fit border"
+									className="w-[200px] p-4 h-fit border max-sm:w-full max-sm:flex max-sm:justify-between "
 								>
-									<div className="w-full flex justify-center items-center">
+									<div className="w-fit flex justify-center items-center max-sm:justify-start">
 										<img
-											className="object-cover w-[150px] h-[150px]"
+											className="object-cover w-[150px] h-[150px] max-sm:w-[50px] max-sm:h-[50px]"
 											src="https://play-lh.googleusercontent.com/mOkjjo5Rzcpk7BsHrsLWnqVadUK1FlLd2-UlQvYkLL4E9A0LpyODNIQinXPfUMjUrbE"
 											alt=""
 										/>
@@ -64,7 +79,7 @@ export default function SongPage() {
 										<h6 className="text-sm font-medium line-clamp-1 opacity-50">
 											{transFormCharacter(song?.songName)}
 										</h6>
-										<h6 className="text-sm font-medium line-clamp-1 opacity-50">
+										<h6 className="text-sm max-sm:text-right font-medium  opacity-50">
 											{" "}
 											Listen : {song?.listeningCount?.length}
 										</h6>
@@ -75,8 +90,14 @@ export default function SongPage() {
 					) : (
 						<p className="text-center opacity-50 w-full">No Song lists</p>
 					)}
-					<audio autoPlay controls src={songUrl} className="w-full"></audio>
+
 				</div>
+				<div className=" flex gap-4 justify-end py-4">
+					<button disabled={page === 1} onClick={() => backPaginate()} className="px-4 py-1 rounded-full text-white bg-black bg-opacity-50">prev</button>
+					<button className="px-4 py-1 text-white bg-opacity-50">{page} </button>
+					<button disabled={!allSongs?.length} onClick={() => nextPaginate()} className="px-4 py-1 rounded-full text-white bg-black bg-opacity-50">Next</button>
+				</div>
+				<audio autoPlay controls src={songUrl} className="w-full"></audio>
 			</div>
 			<Footer />
 		</div>

@@ -1,10 +1,11 @@
 import Navbar from "../components/Navbar"
 import { FormEvent, useEffect, useState } from "react"
 import { signUpApi } from "../redux/actions/authAction"
-import { token, useAppDispatch } from "../redux/store"
+import { useAppDispatch, useAppSelector } from "../redux/store"
 import { Link, useNavigate } from "react-router-dom"
 
 export default function SignupPage() {
+	const { token }: { token: string } = useAppSelector((state) => state.auth)
 	const [firstName, setFirstName] = useState<string>("")
 	const [lastName, setLastName] = useState<string>("")
 	const [email, setEmail] = useState<string>("")
@@ -16,9 +17,9 @@ export default function SignupPage() {
 
 	useEffect(() => {
 		if (token) {
-			navigate("/")
+			navigate("/song")
 		}
-	}, [navigate])
+	}, [token, navigate])
 
 	const signUp = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -102,7 +103,7 @@ export default function SignupPage() {
 										<button
 											type="submit"
 											className={`w-full py-3 px-5 text-[12px] font-medium text-black transition-all bg-white hover:bg-gray-100 focus:bg-gray-100 hover:scale-105 focus:scale-105 rounded-[24px] truncate`}
-											onClick={() => {}}
+											onClick={() => { }}
 										>
 											Sign Up
 										</button>
