@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { Song } from "./songReducer"
 
 export interface FollowAndVisiters {
 	profilePicture: {
@@ -9,6 +10,16 @@ export interface FollowAndVisiters {
 	firstName: string
 	lastName: string
 	email: string
+}
+
+export interface AlbumCreation {
+	albumImage: {
+		public_id: string | null
+		url: string | null
+	}
+	albumName: string
+	uploadedSongs: Song[]
+	_id: string
 }
 export interface User {
 	profilePicture: {
@@ -24,15 +35,7 @@ export interface User {
 	visited: FollowAndVisiters[]
 	createdAt: string
 	updatedAt: string
-	albumCreation: Array<{
-		albumImage: {
-			public_id: string | null
-			url: string | null
-		}
-		albumName: string
-		uploadedSongs: string[]
-		_id: string
-	}>
+	albumCreation: AlbumCreation[]
 }
 
 export interface AuthPayload {

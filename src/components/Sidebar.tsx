@@ -167,11 +167,11 @@ export default function Sidebar() {
 									onClick={() => {
 										openMainMenu()
 									}}
-									to="/"
+									to="/my-album"
 									replace={true}
 									className={`flex items-center lg:text-lg rounded  pl-1 text-gray-50 font-semibold  hover:text-gray-50 `}
 								>
-									<span className="text-[16px] md:text-[14px]">Privacy</span>
+									<span className="text-[16px] md:text-[14px]">My Album</span>
 								</Link>
 							</li>
 							<li className="">
@@ -309,6 +309,18 @@ export default function Sidebar() {
 										<span className="select-none text-[16px] md:text-[24px]"></span>&nbsp;&nbsp;&nbsp;{" "}
 										<span className="text-[16px] md:text-[14px]">
 											Visiters &nbsp; {user?.visited?.length}
+										</span>
+									</Link>
+								</li>
+								<li className="mb-5">
+									<Link
+										to="/my-album"
+										replace={true}
+										className={`flex items-center lg:text-lg rounded  pl-1  text-[#a7a7a7]  hover:text-gray-50 `}
+									>
+										<span className="select-none text-[16px] md:text-[24px]"></span>&nbsp;&nbsp;&nbsp;{" "}
+										<span className="text-[16px] md:text-[14px]">
+											My Albums
 										</span>
 									</Link>
 								</li>

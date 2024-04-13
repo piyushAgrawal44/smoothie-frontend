@@ -14,6 +14,7 @@ import VisitersPage from "./pages/VisitersPage"
 import SongPage from "./pages/SongPage"
 import MyProfile from "./pages/MyProfile"
 import SubscriptionPage from "./pages/SubscriptionPage"
+import MyAlbum from "./pages/myAlbum"
 
 function App() {
 	const dispatch = useAppDispatch()
@@ -39,6 +40,7 @@ function App() {
 							<Route path="visiters" element={<VisitersPage />} />
 							<Route path="/users/:id" element={<SingleUser />} />
 							<Route path="/my-profile" element={<MyProfile />} />
+							<Route path="/my-album" element={<MyAlbum />} />
 							<Route path="/subscription" element={<SubscriptionPage />} />
 						</Route>
 						<Route path="/login" element={<LoginPage />} />
