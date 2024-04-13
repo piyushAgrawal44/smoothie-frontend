@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState: { searchQuery: string; limit: number; page: number } = {
 	searchQuery: "",
 	limit: 10,
-	page: 1
+	page: 1 || null
 }
 
 const filterSlice = createSlice({

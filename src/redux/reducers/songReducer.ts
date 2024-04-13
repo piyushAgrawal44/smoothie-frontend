@@ -51,7 +51,7 @@ const songSlice = createSlice({
 		},
 		// listen song
 		listenSongStart(state) {
-			state.loading = true
+			state.loading = false
 		},
 		listenSongSuccess(state) {
 			state.loading = false
