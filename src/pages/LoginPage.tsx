@@ -23,6 +23,13 @@ export default function LoginPage() {
 			await dispatch(loginApi(email, password))
 		}
 	}
+
+	const loginWithDemo = async () => {
+
+
+		await dispatch(loginApi("rk@gmail.com", "Admin12345@"))
+
+	}
 	return (
 		<>
 			<div className="w-full bg-black text-gray-50 min-h-[calc(100vh-50px)] xm:min-h-screen ">
@@ -60,9 +67,18 @@ export default function LoginPage() {
 										<button
 											type="submit"
 											className={`w-full py-3 px-5 text-[12px] font-medium text-black transition-all bg-white hover:bg-gray-100 focus:bg-gray-100 hover:scale-105 focus:scale-105 rounded-[24px] truncate`}
-											onClick={() => {}}
+											onClick={() => { }}
 										>
 											Login
+										</button>
+									</div>
+									<div className="my-2.5">
+										<button
+											type="submit"
+											className={`w-full py-3 px-5 text-[12px] font-medium text-white transition-all bg-gray-600 hover:bg-gray-600  hover:scale-105 focus:scale-105 rounded-[24px] truncate`}
+											onClick={loginWithDemo}
+										>
+											Login With Demo Account
 										</button>
 									</div>
 								</div>

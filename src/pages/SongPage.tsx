@@ -6,6 +6,7 @@ import { Song } from "../redux/reducers/songReducer"
 import { allSongApi, listenSongApi } from "../redux/actions/songAction"
 import { DotsLoader } from "../components/loaders/DotsLoader"
 import { filterStart } from "../redux/reducers/searchReducer"
+import Card from "../components/Card"
 
 export default function SongPage() {
 	const { searchQuery, limit, page }: { searchQuery: string; limit: number; page: number } = useAppSelector(
@@ -63,28 +64,32 @@ export default function SongPage() {
 					) : allSongs.length ? (
 						allSongs.map((song: Song) => {
 							return (
-								<div
-									onClick={() => clickOnSingleSong(song)}
-									key={song?._id}
-									className="w-[200px] p-4 h-fit border max-sm:w-full max-sm:flex max-sm:justify-between "
-								>
-									<div className="w-fit flex justify-center items-center max-sm:justify-start">
-										<img
-											className="object-cover w-[150px] h-[150px] max-sm:w-[50px] max-sm:h-[50px]"
-											src="https://play-lh.googleusercontent.com/mOkjjo5Rzcpk7BsHrsLWnqVadUK1FlLd2-UlQvYkLL4E9A0LpyODNIQinXPfUMjUrbE"
-											alt=""
-										/>
-									</div>
-									<div className="mt-2">
-										<h6 className="text-sm font-medium line-clamp-1 opacity-50">
-											{transFormCharacter(song?.songName)}
-										</h6>
-										<h6 className="text-sm max-sm:text-right font-medium  opacity-50">
-											{" "}
-											Listen : {song?.listeningCount?.length}
-										</h6>
-									</div>
-								</div>
+								<>
+
+									<Card songs={song} listeningCount={song?.listeningCount} songName={transFormCharacter(song?.songName)} handlePlay={() => clickOnSingleSong(song)} imageURL={"https://play-lh.googleusercontent.com/mOkjjo5Rzcpk7BsHrsLWnqVadUK1FlLd2-UlQvYkLL4E9A0LpyODNIQinXPfUMjUrbE"} />
+									{/* <div
+										onClick={() => clickOnSingleSong(song)}
+										key={song?._id}
+										className="w-[200px] p-4 h-fit border max-sm:w-full max-sm:flex max-sm:justify-between "
+									>
+										<div className="w-fit flex justify-center items-center max-sm:justify-start">
+											<img
+												className="object-cover w-[150px] h-[150px] max-sm:w-[50px] max-sm:h-[50px]"
+												src="https://play-lh.googleusercontent.com/mOkjjo5Rzcpk7BsHrsLWnqVadUK1FlLd2-UlQvYkLL4E9A0LpyODNIQinXPfUMjUrbE"
+												alt=""
+											/>
+										</div>
+										<div className="mt-2">
+											<h6 className="text-sm font-medium line-clamp-1 opacity-50">
+												{transFormCharacter(song?.songName)}
+											</h6>
+											<h6 className="text-sm max-sm:text-right font-medium  opacity-50">
+												{" "}
+												Listen : {song?.listeningCount?.length}
+											</h6>
+										</div>
+									</div> */}
+								</>
 							)
 						})
 					) : (

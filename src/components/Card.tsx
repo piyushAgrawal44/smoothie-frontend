@@ -1,13 +1,18 @@
 export default function Card({
 	songName,
 	songs,
-	listeningCount
+	listeningCount,
+	imageURL,
+	image_rounded,
+	handlePlay
 }: {
 	songName: string
 	songs: { url: string }
 	listeningCount: string[]
+	imageURL: string,
+	image_rounded: boolean,
+	handlePlay: ()=>{}
 }) {
-	console.log(songs.url)
 
 	return (
 		<>
@@ -18,8 +23,8 @@ export default function Card({
 					<div className="max-w-full p-3 rounded-md">
 						<div className="relative overflow-hidden cursor-pointer ">
 							{songs?.url && <audio controls src={songs?.url}></audio>}
-							{/* <img className={`w-full ${props.image_rounded ? 'rounded-full' : 'rounded-md'}`} src={props.image.thumbnail} alt="song_thumbnail" /> */}
-							<div className="absolute top-[-100%] xm:group-hover:top-0 transition-all left-0 w-full h-full flex justify-end items-end p-2 bg-[]">
+							<img className={`w-full ${image_rounded ? 'rounded-full' : 'rounded-md'}`} src={imageURL} alt="song_thumbnail" />
+							<div className="absolute top-[-100%] xm:group-hover:top-0 transition-all left-0 w-full h-full flex justify-end items-end p-2 bg-[]"  onClick={handlePlay}>
 								<div className="cursor-pointer rounded-full w-10 h-10 p-2 bg-green-400 text-black text-center">
 									<i className="bi bi-play-fill"></i>
 								</div>
@@ -28,7 +33,7 @@ export default function Card({
 
 						<div className="mt-2">
 							<h6 className="text-sm font-medium line-clamp-1">{songName}</h6>
-							<h6 className="text-sm font-medium line-clamp-1">{listeningCount.length}</h6>
+							<h6 className="text-sm font-medium line-clamp-1">Listen Count: {listeningCount.length}</h6>
 						</div>
 					</div>
 				</div>
