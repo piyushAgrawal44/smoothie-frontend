@@ -7,10 +7,10 @@ export default function Card({
 	handlePlay
 }: {
 	songName: string
-	songs: { url: string }
+	songs: { url?: string }
 	listeningCount: string[]
 	imageURL: string,
-	image_rounded: boolean,
+	image_rounded?: boolean,
 	handlePlay: ()=>{}
 }) {
 

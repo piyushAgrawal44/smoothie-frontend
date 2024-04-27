@@ -66,7 +66,7 @@ export default function SongPage() {
 							return (
 								<>
 
-									<Card songs={song} listeningCount={song?.listeningCount} songName={transFormCharacter(song?.songName)} handlePlay={() => clickOnSingleSong(song)} imageURL={"https://play-lh.googleusercontent.com/mOkjjo5Rzcpk7BsHrsLWnqVadUK1FlLd2-UlQvYkLL4E9A0LpyODNIQinXPfUMjUrbE"} />
+									<Card songs={{url: song.songs.url ?? ""}} listeningCount={song?.listeningCount} songName={transFormCharacter(song?.songName)} handlePlay={() => clickOnSingleSong(song)} imageURL={"https://play-lh.googleusercontent.com/mOkjjo5Rzcpk7BsHrsLWnqVadUK1FlLd2-UlQvYkLL4E9A0LpyODNIQinXPfUMjUrbE"} />
 									{/* <div
 										onClick={() => clickOnSingleSong(song)}
 										key={song?._id}
