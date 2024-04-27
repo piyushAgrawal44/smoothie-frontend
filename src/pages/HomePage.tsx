@@ -22,7 +22,7 @@ export default function HomePage() {
 		<>
 			<div className="w-full bg-black text-gray-50 min-h-screen ">
 				<div className="relative  flex flex-wrap">
-					<Sidebar active="home" />
+					<Sidebar  />
 					<div className="p-2 min-h-screen w-full lg:w-[80%] lg:ml-[20%]">
 						<Navbar />
 						<Outlet />
