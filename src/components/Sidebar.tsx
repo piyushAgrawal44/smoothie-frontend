@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import WhiteButton from "./WhiteButton"
 import { useAppDispatch, useAppSelector } from "../redux/store"
 import { User, logOutSuccess } from "../redux/reducers/authReducer"
-export default function Sidebar() {
+export default function Sidebar(props:any) {
 	const { isAuthenticated, user }: { isAuthenticated: boolean; user: User | null; } = useAppSelector(
 		(state) => state.auth
 	)
