@@ -1,6 +1,5 @@
 export default function Card({
 	songName,
-	songs,
 	listeningCount,
 	imageURL,
 	image_rounded,
