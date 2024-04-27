@@ -5,7 +5,7 @@ This project is a Spotify frontend clone with React.js and Tailwind CSS. I have 
 You can see my developed screens inside my_developed_screens_images folder.
 
 ## Live URL: 
-https://spotify-clone-piyush-agrawal.netlify.app/
+[https://spotify-clone-piyush-agrawal.netlify.app/](https://smoothei.netlify.app/)
 
 ## Features
 
