@@ -23,7 +23,7 @@ export default function Card({
 						<div className="relative overflow-hidden cursor-pointer ">
 							{/* {songs?.url && <audio controls src={songs?.url}></audio>} */}
 							<img className={`w-full ${image_rounded ? 'rounded-full' : 'rounded-md'}`} src={imageURL} alt="song_thumbnail" />
-							<div className="absolute top-[-100%] xm:group-hover:top-0 transition-all left-0 w-full h-full flex justify-end items-end p-2 bg-[]"  onClick={handlePlay}>
+							<div className="absolute top-[-100%] group-hover:top-0 transition-all left-0 w-full h-full flex justify-end items-end p-2 bg-[]"  onClick={handlePlay}>
 								<div className="cursor-pointer rounded-full w-10 h-10 p-2 bg-green-400 text-black text-center">
 									<i className="bi bi-play-fill"></i>
 								</div>
