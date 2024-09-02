@@ -3,9 +3,10 @@ import { FormEvent, useEffect, useState } from "react"
 import { loginApi } from "../redux/actions/authAction"
 import { Link, useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../redux/store"
+import { DotsLoader } from "../components/loaders/DotsLoader"
 
 export default function LoginPage() {
-	const { token }: { token: string } = useAppSelector((state) => state.auth)
+	const { token, loading } = useAppSelector((state) => state.auth)
 	const [email, setEmail] = useState<string>("")
 	const [password, setPassword] = useState<string>("")
 	const dispatch = useAppDispatch()
@@ -55,14 +56,24 @@ export default function LoginPage() {
 											placeholder="******"
 										/>
 									</div>
-									<p><span className="text-white opacity-50">Create new Account ..</span> <Link to={"/signup"} className="text-white font-semibold">Sign up</Link> </p>
+									<p>
+										<span className="text-white opacity-50">Create new Account ..</span>{" "}
+										<Link to={"/signup"} className="text-white font-semibold">
+											Sign up
+										</Link>{" "}
+									</p>
 									<div className="my-2.5">
 										<button
 											type="submit"
 											className={`w-full py-3 px-5 text-[12px] font-medium text-black transition-all bg-white hover:bg-gray-100 focus:bg-gray-100 hover:scale-105 focus:scale-105 rounded-[24px] truncate`}
-											onClick={() => {}}
 										>
-											Login
+											{loading ? (
+												<div className="flex justify-center items-center">
+													<DotsLoader />
+												</div>
+											) : (
+												"Login"
+											)}
 										</button>
 									</div>
 								</div>
